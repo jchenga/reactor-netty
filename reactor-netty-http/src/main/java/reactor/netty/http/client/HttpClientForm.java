@@ -15,12 +15,14 @@
  */
 package reactor.netty.http.client;
 
+import io.netty.buffer.ByteBuf;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 
 import io.netty.handler.codec.http.multipart.HttpDataFactory;
 import io.netty.handler.codec.http.multipart.HttpPostRequestEncoder;
+import org.reactivestreams.Publisher;
 import reactor.util.annotation.Nullable;
 
 /**
@@ -165,6 +167,8 @@ public interface HttpClientForm {
 	 * @return this builder
 	 */
 	HttpClientForm files(String name, File[] files, String[] contentTypes, boolean[] textFiles);
+
+	HttpClientForm file(String name, Publisher<? extends ByteBuf> publisher, @Nullable String contentType);
 
 	/**
 	 * Define if this request will be encoded as Multipart

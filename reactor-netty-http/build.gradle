@@ -67,6 +67,7 @@ dependencies {
 	api "io.netty:netty-codec-http:$nettyVersion"
 	api "io.netty:netty-codec-http2:$nettyVersion"
 	api "io.netty:netty-resolver-dns:$nettyVersion"
+	api "io.netty:netty-handler-proxy:$nettyVersion"
 	// MacOS binaries are not available for Netty SNAPSHOT version
 	if (!"$nettyVersion".endsWithAny("SNAPSHOT")) {
 		if (osdetector.classifier == "osx-x86_64" || osdetector.classifier == "osx-aarch_64") {

@@ -15,6 +15,7 @@
  */
 package reactor.netty.http.client;
 
+import io.netty.buffer.ByteBuf;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,6 +34,7 @@ import io.netty.handler.codec.http.multipart.FileUpload;
 import io.netty.handler.codec.http.multipart.HttpDataFactory;
 import io.netty.handler.codec.http.multipart.HttpPostRequestEncoder;
 import io.netty.handler.stream.ChunkedInput;
+import org.reactivestreams.Publisher;
 import reactor.core.Exceptions;
 import reactor.core.publisher.Sinks;
 import reactor.util.annotation.Nullable;
@@ -231,6 +233,12 @@ final class HttpClientFormEncoder extends HttpPostRequestEncoder
 			throw Exceptions.propagate(e);
 		}
 		return this;
+	}
+
+	@Override
+	public HttpClientForm file(String name, Publisher<? extends ByteBuf> publisher,
+			String contentType) {
+		return null;
 	}
 
 	@Override
